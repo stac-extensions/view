@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/template/v1.0.0/schema.json#",
-  "title": "Template Extension",
-  "description": "STAC Template Extension for STAC Items and STAC Collections.",
+  "$id": "https://stac-extensions.github.io/view/v1.0.0/schema.json#",
+  "title": "View Geometry Extension",
+  "description": "STAC View Geometry Extension for STAC Items and STAC Collections.",
   "oneOf": [
     {
       "$comment": "This is the schema for STAC Items.",
@@ -21,9 +21,12 @@
             "properties": {
               "allOf": [
                 {
-                  "$comment": "Require fields here for item properties.",
-                  "required": [
-                    "template:new_field"
+                  "anyOf": [
+                    {"required": ["view:off_nadir"]},
+                    {"required": ["view:incidence_angle"]},
+                    {"required": ["view:azimuth"]},
+                    {"required": ["view:sun_azimuth"]},
+                    {"required": ["view:sun_elevation"]}
                   ]
                 },
                 {
@@ -69,13 +72,6 @@
               }
             }
           }
-        },
-        {
-          "$comment": "Remove this and the following object if this is not an extension to a Collection.",
-          "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "$ref": "#/definitions/fields"
         }
       ]
     }
@@ -90,7 +86,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/template/v1.0.0/schema.json"
+            "enum": [
+              "view",
+              "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/view/json-schema/schema.json"
+            ]
           }
         }
       }
@@ -99,39 +98,39 @@
       "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
       "type": "object",
       "properties": {
-        "template:new_field": {
-          "type": "string"
+        "view:off_nadir": {
+          "title": "Off Nadir",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
         },
-        "template:xyz": {
-          "type": "object",
-          "required": [
-            "x",
-            "y",
-            "z"
-          ],
-          "properties": {
-            "x": {
-              "type": "number"
-            },
-            "y": {
-              "type": "number"
-            },
-            "z": {
-              "type": "number"
-            }
-          }
-        }, 
-        "template:another_one": {
-          "type": "array", 
-          "items": {
-            "type": "number"
-          }
+        "view:incidence_angle": {
+          "title": "Center incidence angle",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "view:azimuth": {
+          "title": "Azimuth angle",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360
+        },
+        "view:sun_azimuth": {
+          "title": "Sun Azimuth",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360
+        },
+        "view:sun_elevation": {
+          "title": "Sun Elevation",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         }
       },
       "patternProperties": {
-        "^(?!template:)": {
-          "$comment": "Above, change `template` to the prefix of this extension"
-        }
+        "^(?!view:)": {}
       },
       "additionalProperties": false
     }
