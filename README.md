@@ -63,12 +63,11 @@ Example:
 
 ## Best Practices
 
-One of the emerging best practices is to use [Asset Roles](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#asset-roles) to provide clients with more 
-information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. This list should
-not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
+One of the emerging best practices is to use [Asset Roles](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#asset-roles)
+to provide clients with more information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. 
+This list should not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
 these role names then they will be specified in the future as more standard than just 'best practices'. The roles listed below
-all tend to be additional files that contain specific values for every single pixel. It is recommended to use them all with the role
-of 'metadata'.
+all tend to be additional files that contain specific values for every single pixel. It is recommended to use them all with the role of 'metadata'.
 
 | Role Name | Description                                                            |
 | --------- | ---------------------------------------------------------------------- |
