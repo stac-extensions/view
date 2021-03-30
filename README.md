@@ -1,22 +1,24 @@
 # View Geometry Extension Specification
 
-- **Title: View Geometry**
+- **Title:** View Geometry
 - **Identifier:** <https://stac-extensions.github.io/view/v1.0.0/schema.json>
-- **Field Name Prefix: view**
-- **Scope: Item**
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions.md#extension-maturity): Proposal**
+- **Field Name Prefix:** view
+- **Scope:** Item, Collection
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions.md#extension-maturity):** Proposal
 - **Owner**: @matthewhanson
 
-This document explains the fields of the View Geometry Extension to a STAC 
-[Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md). View Geometry adds metadata related to 
+This document explains the View Geometry Extension to the
+[SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
+
+View Geometry adds metadata related to 
 angles of sensors and other radiance angles that affect the view of resulting data. It will often be combined with other 
 extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions.
 
 - [Example](examples/item.json)
 - [JSON Schema](json-schema/schema.json)
-- [Changelog](CHANGELOG.md)
+- [Changelog](./CHANGELOG.md)
 
-## Item Properties and Item Asset fields
+## Item Properties
 
 | Field Name           | Type                     | Description |
 | -------------------- | ------------------------ | ----------- |
@@ -78,3 +80,34 @@ all tend to be additional files that contain specific values for every single pi
 | terrain-shadow | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
 | terrain-occlusion | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
 | terrain-illumination | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
+
+## Contributing
+
+All contributions are subject to the
+[STAC Specification Code of Conduct](https://github.com/radiantearth/stac-spec/blob/master/CODE_OF_CONDUCT.md).
+For contributions, please follow the
+[STAC specification contributing guide](https://github.com/radiantearth/stac-spec/blob/master/CONTRIBUTING.md) Instructions
+for running tests are copied here for convenience.
+
+### Running tests
+
+The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid. 
+To run tests locally, you'll need `npm`, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
+
+First you'll need to install everything with npm once. Just navigate to the root of this repository and on 
+your command line run:
+```bash
+npm install
+```
+
+Then to check markdown formatting and test the examples against the JSON schema, you can run:
+```bash
+npm test
+```
+
+This will spit out the same texts that you see online, and you can then go and fix your markdown or examples.
+
+If the tests reveal formatting problems with the examples, you can fix them with:
+```bash
+npm run format-examples
+```
