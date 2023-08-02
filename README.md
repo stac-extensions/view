@@ -19,7 +19,14 @@ extensions that describe the actual data, such as the `eo`, `sat` or `sar` exten
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
-## Item Properties
+## Fields
+
+The fields in the table below can be used in these parts of STAC documents:
+- [ ] Catalogs
+- [ ] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
+- [ ] Links
 
 | Field Name           | Type                     | Description |
 | -------------------- | ------------------------ | ----------- |
