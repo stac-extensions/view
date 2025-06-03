@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Updated schema to the latest version of the template
+- Allow fields in assets
+- Don't require a field in Item Properties if it is provided in other places (e.g. assets)
+
 ### Deprecated
 
 ### Removed

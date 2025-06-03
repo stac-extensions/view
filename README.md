@@ -22,21 +22,20 @@ extensions that describe the actual data, such as the `eo`, `sat` or `sar` exten
 ## Fields
 
 The fields in the table below can be used in these parts of STAC documents:
+
 - [ ] Catalogs
 - [ ] Collections
 - [x] Item Properties (incl. Summaries in Collections)
 - [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
 - [ ] Links
 
-| Field Name           | Type                     | Description |
-| -------------------- | ------------------------ | ----------- |
-| view:off_nadir       | number               | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| view:incidence_angle | number               | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
-| view:azimuth         | number               | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
-| view:sun_azimuth     | number               | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
-| view:sun_elevation   | number               | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (`-90`-`90`). Negative values indicate the sun is below the horizon, e.g. sun elevation of -10° means the data was captured during [nautical twilight](https://www.timeanddate.com/astronomy/different-types-twilight.html). |
-
-*At least one of the fields must be specified.*
+| Field Name           | Type   | Description |
+| -------------------- | ------ | ----------- |
+| view:off_nadir       | number | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
+| view:incidence_angle | number | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
+| view:azimuth         | number | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
+| view:sun_azimuth     | number | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
+| view:sun_elevation   | number | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (`-90`-`90`). Negative values indicate the sun is below the horizon, e.g. sun elevation of -10° means the data was captured during [nautical twilight](https://www.timeanddate.com/astronomy/different-types-twilight.html). |
 
 The angles `off_nadir`, `incidence_angle`, and `sun_elevation` are angles measured on a 2d plane formed: sensor location, 
 sub-sensor point on the earth, the sun, and the center of the viewed area.
@@ -49,9 +48,10 @@ the off-nadir angle is preferred.
 The angles `azimuth` and `sun_azimuth` indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
 
 Example:
+
 ```js
 {
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.1.0",
   "stac_extensions": [
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
@@ -71,22 +71,22 @@ Example:
 }
 ```
 
-## Best Practices
+## Asset Roles
 
-One of the emerging best practices is to use [Asset Roles](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#asset-roles)
+One of the best practices is to use [Asset Roles](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#asset-roles)
 to provide clients with more information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. 
 This list should not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
 these role names then they will be specified in the future as more standard than just 'best practices'. The roles listed below
 all tend to be additional files that contain specific values for every single pixel. It is recommended to use them all with the role of 'metadata'.
 
-| Role Name | Description                                                            |
-| --------- | ---------------------------------------------------------------------- |
-| incidence-angle | Points to a file with per-pixel incidence angles. |
-| azimuth | Points to a file with per-pixel azimuth angles. |
-| sun-azimuth | Points to a file with per-pixel sun azimuth angles. |
-| sun-elevation | Points to a file with per-pixel sun elevation angles. |
-| terrain-shadow | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
-| terrain-occlusion | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
+| Role Name            | Description |
+| -------------------- | ----------- |
+| incidence-angle      | Points to a file with per-pixel incidence angles. |
+| azimuth              | Points to a file with per-pixel azimuth angles. |
+| sun-azimuth          | Points to a file with per-pixel sun azimuth angles. |
+| sun-elevation        | Points to a file with per-pixel sun elevation angles. |
+| terrain-shadow       | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
+| terrain-occlusion    | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
 | terrain-illumination | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
 
 ## Contributing
