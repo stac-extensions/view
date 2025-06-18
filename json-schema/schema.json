@@ -1,100 +1,113 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/view/v1.0.0/schema.json#",
+  "$id": "https://stac-extensions.github.io/view/v1.0.0/schema.json",
   "title": "View Geometry Extension",
-  "description": "STAC View Geometry Extension for STAC Items and STAC Collections.",
+  "description": "STAC View Geometry for STAC Items and STAC Collections.",
+  "type": "object",
+  "required": ["stac_extensions"],
+  "properties": {
+    "stac_extensions": {
+      "type": "array",
+      "contains": {
+        "const": "https://stac-extensions.github.io/view/v1.0.0/schema.json"
+      }
+    }
+  },
   "oneOf": [
     {
       "$comment": "This is the schema for STAC Items.",
-      "allOf": [
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "const": "Feature"
+        }
+      },
+      "anyOf": [
         {
-          "type": "object",
-          "required": [
-            "type",
-            "properties",
-            "assets"
-          ],
+          "required": ["properties"],
           "properties": {
-            "type": {
-              "const": "Feature"
-            },
             "properties": {
-              "allOf": [
-                {
-                  "anyOf": [
-                    {"required": ["view:off_nadir"]},
-                    {"required": ["view:incidence_angle"]},
-                    {"required": ["view:azimuth"]},
-                    {"required": ["view:sun_azimuth"]},
-                    {"required": ["view:sun_elevation"]}
-                  ]
-                },
-                {
-                  "$ref": "#/definitions/fields"
-                }
-              ]
-            },
-            "assets": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
-              }
+              "$ref": "#/definitions/requirements_and_fields"
             }
           }
         },
         {
-          "$ref": "#/definitions/stac_extensions"
+          "$ref": "#/definitions/assets"
         }
       ]
     },
     {
       "$comment": "This is the schema for STAC Collections.",
-      "allOf": [
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "const": "Collection"
+        }
+      },
+      "anyOf": [
         {
-          "type": "object",
-          "required": [
-            "type"
-          ],
+          "$ref": "#/definitions/assets"
+        },
+        {
+          "required": ["item_assets"],
           "properties": {
-            "type": {
-              "const": "Collection"
-            },
-            "assets": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
-              }
-            },
             "item_assets": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
-              }
+              "$ref": "#/definitions/asset_contains"
             }
           }
         },
         {
-          "$ref": "#/definitions/stac_extensions"
+          "$comment": "This is the schema for the fields in Summaries. By default, only checks the existence of the properties, but not the schema of the summaries.",
+          "required": ["summaries"],
+          "properties": {
+            "summaries": {
+              "$ref": "#/definitions/require_any_field"
+            }
+          }
         }
       ]
     }
   ],
   "definitions": {
-    "stac_extensions": {
-      "type": "object",
-      "required": [
-        "stac_extensions"
-      ],
+    "assets": {
+      "required": ["assets"],
       "properties": {
-        "stac_extensions": {
-          "type": "array",
-          "contains": {
-            "contains": {
-              "const": "https://stac-extensions.github.io/view/v1.0.0/schema.json"
-            }
+        "assets": {
+          "$ref": "#/definitions/asset_contains"
+        }
+      }
+    },
+    "asset_contains": {
+      "type": "object",
+      "not": {
+        "additionalProperties": {
+          "not": {
+            "$ref": "#/definitions/requirements_and_fields"
           }
         }
       }
+    },
+    "requirements_and_fields": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/require_any_field"
+        },
+        {
+          "$ref": "#/definitions/fields"
+        }
+      ]
+    },
+    "require_any_field": {
+      "$comment": "Please list all fields here so that we can force the existence of one of them in other parts of the schemas.",
+      "anyOf": [
+        { "required": ["view:off_nadir"] },
+        { "required": ["view:incidence_angle"] },
+        { "required": ["view:azimuth"] },
+        { "required": ["view:sun_azimuth"] },
+        { "required": ["view:sun_elevation"] }
+      ]
     },
     "fields": {
       "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
@@ -132,7 +145,9 @@
         }
       },
       "patternProperties": {
-        "^(?!view:)": {}
+        "^(?!view:)": {
+          "$comment": "Do not allow unspecified fields prefixed with view:"
+        }
       },
       "additionalProperties": false
     }
