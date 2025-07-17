@@ -1,7 +1,7 @@
 # View Geometry Extension Specification
 
 - **Title:** View Geometry
-- **Identifier:** <https://stac-extensions.github.io/view/v1.0.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/view/v1.1.0/schema.json>
 - **Field Name Prefix:** view
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions.md#extension-maturity):** Stable
@@ -11,7 +11,7 @@
 This document explains the View Geometry Extension to the
 [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
 
-View Geometry adds metadata related to 
+View Geometry adds metadata related to
 angles of sensors and other radiance angles that affect the view of resulting data. It will often be combined with other 
 extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions.
 
@@ -42,7 +42,7 @@ The fields in the table below can be used in these parts of STAC documents:
 The angles `off_nadir`, `incidence_angle`, and `sun_elevation` / `moon_elevation` are angles measured on a 2d plane formed:
 sensor location, sub-sensor point on the earth, the sun / moon, and the center of the viewed area.
 
-The off-nadir angle and the incidence angle are related. When the off-nadir angle is low (low incidence angle) then the 
+The off-nadir angle and the incidence angle are related. When the off-nadir angle is low (low incidence angle) then the
 two angles are approximately equal. However, at high off-nadir angles with high altitude sensors the curvature of the earth
 has an impact and the two angles are no longer equivalent.
 
@@ -55,7 +55,7 @@ Example:
 {
   "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/view/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/view/v1.1.0/schema.json"
   ],
   "id": "20171110",
   "type": "Feature",
@@ -76,7 +76,7 @@ Example:
 ## Asset Roles
 
 One of the best practices is to use [Asset Roles](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#asset-roles)
-to provide clients with more information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. 
+to provide clients with more information about the assets in an item. The following list includes a shared vocabulary for some common EO assets.
 This list should not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
 these role names then they will be specified in the future as more standard than just 'best practices'. The roles listed below
 all tend to be additional files that contain specific values for every single pixel. It is recommended to use them all with the role of 'metadata'.
@@ -103,16 +103,18 @@ for running tests are copied here for convenience.
 
 ### Running tests
 
-The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid. 
+The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid.
 To run tests locally, you'll need `npm`, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
 
-First you'll need to install everything with npm once. Just navigate to the root of this repository and on 
+First you'll need to install everything with npm once. Just navigate to the root of this repository and on
 your command line run:
+
 ```bash
 npm install
 ```
 
 Then to check markdown formatting and test the examples against the JSON schema, you can run:
+
 ```bash
 npm test
 ```
@@ -120,6 +122,7 @@ npm test
 This will spit out the same texts that you see online, and you can then go and fix your markdown or examples.
 
 If the tests reveal formatting problems with the examples, you can fix them with:
+
 ```bash
 npm run format-examples
 ```
