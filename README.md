@@ -43,7 +43,7 @@ sub-sensor point on the earth, the sun, and the center of the viewed area.
 
 The off-nadir angle and the incidence angle are related. When the off-nadir angle is low (low incidence angle) then the 
 two angles are approximately equal. However, at high off-nadir angles with high altitude sensors the curvature of the earth
-has an impact and the two angles are no longer equivalent. If only providing one of the two angles, the off-nadir angle is preferred.
+has an impact and the two angles are no longer equivalent.
 
 The angles `azimuth` and `sun_azimuth` indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
 
