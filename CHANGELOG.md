@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `view:moon_azimuth`
+- `view:moon_elevation`
+
 ### Changed
 
 - Updated schema to the latest version of the template

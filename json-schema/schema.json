@@ -106,7 +106,9 @@
         { "required": ["view:incidence_angle"] },
         { "required": ["view:azimuth"] },
         { "required": ["view:sun_azimuth"] },
-        { "required": ["view:sun_elevation"] }
+        { "required": ["view:sun_elevation"] },
+        { "required": ["view:moon_azimuth"] },
+        { "required": ["view:moon_elevation"] }
       ]
     },
     "fields": {
@@ -141,6 +143,18 @@
           "title": "Sun Elevation",
           "type": "number",
           "minimum": -90,
+          "maximum": 90
+        },
+        "view:moon_azimuth": {
+          "title": "Moon Azimuth",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360
+        },
+        "view:moon_elevation": {
+          "title": "Moon Elevation",
+          "type": "number",
+          "minimum": 0,
           "maximum": 90
         }
       },

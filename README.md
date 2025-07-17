@@ -36,15 +36,18 @@ The fields in the table below can be used in these parts of STAC documents:
 | view:azimuth         | number | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | view:sun_azimuth     | number | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
 | view:sun_elevation   | number | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (`-90`-`90`). Negative values indicate the sun is below the horizon, e.g. sun elevation of -10° means the data was captured during [nautical twilight](https://www.timeanddate.com/astronomy/different-types-twilight.html). |
+| view:moon_azimuth    | number | Moon azimuth angle. From the scene center point on the ground, this is the angle between truth north and the moon. Measured clockwise in degrees (0-360). |
+| view:moon_elevation  | number | Moon elevation angle. The angle from the tangent of the scene center point to the moon. Measured from the horizon in degrees (`0`-`90`). |
 
-The angles `off_nadir`, `incidence_angle`, and `sun_elevation` are angles measured on a 2d plane formed: sensor location, 
-sub-sensor point on the earth, the sun, and the center of the viewed area.
+The angles `off_nadir`, `incidence_angle`, and `sun_elevation` / `moon_elevation` are angles measured on a 2d plane formed:
+sensor location, sub-sensor point on the earth, the sun / moon, and the center of the viewed area.
 
 The off-nadir angle and the incidence angle are related. When the off-nadir angle is low (low incidence angle) then the 
 two angles are approximately equal. However, at high off-nadir angles with high altitude sensors the curvature of the earth
 has an impact and the two angles are no longer equivalent.
 
-The angles `azimuth` and `sun_azimuth` indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
+The angles `azimuth` and `sun_azimuth` / `moon_azimuth` indicate the position of the viewed scene and
+the sun / moon by the angle from true north, as shown below.
 
 Example:
 
@@ -84,6 +87,8 @@ all tend to be additional files that contain specific values for every single pi
 | azimuth              | Points to a file with per-pixel azimuth angles. |
 | sun-azimuth          | Points to a file with per-pixel sun azimuth angles. |
 | sun-elevation        | Points to a file with per-pixel sun elevation angles. |
+| moon-azimuth         | Points to a file with per-pixel moon azimuth angles. |
+| moon-elevation       | Points to a file with per-pixel moon elevation angles. |
 | terrain-shadow       | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
 | terrain-occlusion    | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
 | terrain-illumination | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
