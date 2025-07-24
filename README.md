@@ -39,39 +39,14 @@ The fields in the table below can be used in these parts of STAC documents:
 | view:moon_azimuth    | number | Moon azimuth angle. From the scene center point on the ground, this is the angle between truth north and the moon. Measured clockwise in degrees (0-360). |
 | view:moon_elevation  | number | Moon elevation angle. The angle from the tangent of the scene center point to the moon. Measured from the horizon in degrees (`0`-`90`). |
 
-The angles `off_nadir`, `incidence_angle`, and `sun_elevation` / `moon_elevation` are angles measured on a 2d plane formed:
-sensor location, sub-sensor point on the earth, the sun / moon, and the center of the viewed area.
+The angles `off_nadir` and are angles measured on a 2d plane formed by the sensor location, the sub-satellite point on the earth, and the center of the target area as shown in the diagram below.  Grazing angle is shown as it is frequently used but it is not included in this extension because it is simply the complement of the incidence angle. When the off-nadir angle is low (low incidence angle) then the two angles are approximately equal. However, at high off-nadir angles with high altitude sensors the curvature of the earth has an impact and the two angles are no longer equivalent.
 
-The off-nadir angle and the incidence angle are related. When the off-nadir angle is low (low incidence angle) then the 
-two angles are approximately equal. However, at high off-nadir angles with high altitude sensors the curvature of the earth
-has an impact and the two angles are no longer equivalent.
+![View angle diagram](images/view-angles-1.png)
 
-The angles `azimuth` and `sun_azimuth` / `moon_azimuth` indicate the position of the viewed scene and
-the sun / moon by the angle from true north, as shown below.
+The `azimuth` [`sun_azimuth`, `moon_azimuth`], and the `elevation` [`sun_elevation`, `moon_elevation`] angles are measured as per the diagram below. Azimuth angles are measured as degrees from North, and elevation angles are measured up from the target plane to the body (satellite, sun, or moon).
 
-Example:
+![View angle diagram](images/view-angles-2.png)
 
-```js
-{
-  "stac_version": "1.1.0",
-  "stac_extensions": [
-    "https://stac-extensions.github.io/view/v1.0.0/schema.json"
-  ],
-  "id": "20171110",
-  "type": "Feature",
-  ...
-  "properties": {
-    "platform": "mysatellite",
-    "instruments": ["mycamera1", "mycamera2"],
-    "constellation": "allmysatellites",
-    "view:off_nadir": 0,
-    "view:incidence_angle": 90,
-    "view:azimuth": 23.9,
-    "view:sun_elevation": 45.0,
-    "view:sun_azimuth": 56.4
-  }
-}
-```
 
 ## Asset Roles
 
