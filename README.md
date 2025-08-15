@@ -1,7 +1,7 @@
 # View Geometry Extension Specification
 
 - **Title:** View Geometry
-- **Identifier:** <https://stac-extensions.github.io/view/v1.0.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/view/v1.1.0/schema.json>
 - **Field Name Prefix:** view
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions.md#extension-maturity):** Stable
@@ -84,7 +84,7 @@ for running tests are copied here for convenience.
 
 ### Running tests
 
-The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid. 
+The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid.
 To run tests locally, you'll need `npm`, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
 
 First you'll need to install everything with npm once. Just navigate to the root of this repository and on
