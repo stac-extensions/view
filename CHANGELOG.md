@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Defined scene center as the centroid of the Item geometry
+
 ## [v1.1.0] - 2025-07-18
 
 ### Added

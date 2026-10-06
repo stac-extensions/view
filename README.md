@@ -40,7 +40,7 @@ The fields in the table below can be used in these parts of STAC documents:
 | view:moon_elevation  | number | Moon elevation angle. The angle from the tangent of the scene center point to the moon. Measured from the horizon in degrees (`0`-`90`). |
 
 `Nadir` is defined as a vector running from the satellite to the center of the earth. The `sub-satellite point`
-is the point where the nadir vector intersects the earth's surface.
+is the point where the nadir vector intersects the earth's surface. The `scene center` is the centroid of the Item geometry.
 
 The angles `off_nadir` and `incidence_angle` are angles measured on a 2d plane formed by the sensor location,
 the sub-satellite point on the earth, and the scene center point as shown in the diagram below.  Grazing
